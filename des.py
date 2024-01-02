@@ -33,27 +33,27 @@ def swapNibbles(inputByte):
   return (inputByte << 4 | inputByte >> 4) & 0xff
 
 def keyGen(key):
-  def leftShift(keyBitList):
-    shiftedKey = [None] * KeyLength
-    shiftedKey[0:9] = keyBitList[1:10]
-    shiftedKey[4] = keyBitList[0]
-    shiftedKey[9] = keyBitList[5]
-    return shiftedKey
+    def leftShift(keyBitList):
+      shiftedKey = [None] * KeyLength
+      shiftedKey[0:9] = keyBitList[1:10]
+      shiftedKey[4] = keyBitList[0]
+      shiftedKey[9] = keyBitList[5]
+      return shiftedKey
 
-  keyList = [ (key & 1 << i) >> i for i in reversed(range(KeyLength)) ]
-  permKeyList = [None] * KeyLength
-  for index, elem in enumerate(P10table):
-    permKeyList[index] = keyList[elem - 1]
-  
-  shiftedOnceKey = leftShift(permKeyList)
-  shiftedTwiceKey = leftShift(leftShift(shiftedOnceKey))
-  
-  subKey1 = subKey2 = 0
-  for index, elem in enumerate(P8table):
-    subKey1 += (128 >> index) * shiftedOnceKey[elem - 1]
-    subKey2 += (128 >> index) * shiftedTwiceKey[elem - 1]
-  
-  return (subKey1, subKey2)
+    keyList = [ (key & 1 << i) >> i for i in reversed(range(KeyLength)) ]
+    permKeyList = [None] * KeyLength
+    for index, elem in enumerate(P10table):
+      permKeyList[index] = keyList[elem - 1]
+    
+    shiftedOnceKey = leftShift(permKeyList)
+    shiftedTwiceKey = leftShift(leftShift(shiftedOnceKey))
+    
+    subKey1 = subKey2 = 0
+    for index, elem in enumerate(P8table):
+      subKey1 += (128 >> index) * shiftedOnceKey[elem - 1]
+      subKey2 += (128 >> index) * shiftedTwiceKey[elem - 1]
+    
+    return (subKey1, subKey2)
 
 def fk(subKey, inputData):
   def F(sKey, rightNibble):

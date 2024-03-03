@@ -79,10 +79,10 @@ def decimalToBinary(n):
 def binaryToDecimal(n):
   return int(n, 2)
 
-plaintext = 0b10101010
-key = 0b1110001110
+plaintext = 0b10000001
+key = 0b1010000000
 cipher=encrypt(key, plaintext)
-print(plaintext)
-print(cipher)
+print("plaintext: ", plaintext)
+print("ciphertext: ", cipher)
 cipher_to_binary=decimalToBinary(cipher)
-print(cipher_to_binary)
+print("ciphertext in binary:", cipher_to_binary)

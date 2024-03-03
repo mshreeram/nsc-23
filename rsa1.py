@@ -9,10 +9,10 @@ def gcd(a, h):
     a = h
     h = temp
 
-p = 5
-q = 13
+p = 21
+q = 23
 n = p * q
-e = 5
+e = 7
 phi = (p - 1) * (q - 1)
 
 while(e < phi):
@@ -23,9 +23,9 @@ while(e < phi):
 
 k = 3
 d = (1 + (k * phi)) / e
-print(d)
+print("Modular multiplicative inverse of (e mod phi): ", d)
 
-msg = 8.0
+msg = 20.0
 print("Message data = ", msg)
 c = pow(msg, e)
 c = math.fmod(c, n)

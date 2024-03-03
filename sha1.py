@@ -1,8 +1,4 @@
-import hashlib
-str = "hello world"
-
-result = hashlib.sha1(str.encode())
-print(f"The hexadecimal equivalent of SHA1 is: {result.hexdigest()}")
+str = "this is a top secret message written by ram"
 
 def sha1(data):
   bytes = ""
@@ -67,5 +63,4 @@ def sha1(data):
   
   return '%08x%08x%08x%08x%08x' % (h0, h1, h2, h3, h4)
 
-
-print(sha1("hello world"))
+print("The encrypted message is: ", sha1(str))
